@@ -3,7 +3,10 @@ import { NextResponse } from 'next/server'
 import { currentProfile } from '@/lib/current-profile'
 import { db } from '@/lib/db'
 
-export async function PATCH(req: Request, { params }: { params: { serverId: string } }) {
+export async function PATCH(
+  req: Request,
+  { params }: { params: { serverId: string } },
+) {
   try {
     const profile = await currentProfile()
 
@@ -18,16 +21,17 @@ export async function PATCH(req: Request, { params }: { params: { serverId: stri
     const server = await db.server.update({
       where: {
         id: params.serverId,
-        profileId: profile.id
+        profileId: profile.id,
       },
       data: {
-        inviteCode: crypto.randomUUID()
-      }
+        inviteCode: crypto.randomUUID(),
+      },
     })
 
     return NextResponse.json(server)
   } catch (error) {
     console.error('[INVITE_CODE]', error)
+
     return new NextResponse('Internal Error', { status: 500 })
   }
 }

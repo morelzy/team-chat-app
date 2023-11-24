@@ -10,7 +10,7 @@ import {
   Settings,
   Trash,
   UserPlus,
-  Users
+  Users,
 } from 'lucide-react'
 
 import {
@@ -18,7 +18,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-  DropdownMenuSeparator
+  DropdownMenuSeparator,
 } from '@/components/ui/dropdown-menu'
 import { useModalStore } from '@/hooks/use-modal-store'
 
@@ -35,63 +35,71 @@ export function ServerHeader({ server, role }: ServerHeaderProps) {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="focus:outline-none" asChild>
-        <button className="w-full text-md font-semibold px-3 flex items-center h-12 border-neutral-200 dark:border-neutral-800 border-b-2 hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 transition">
+      <DropdownMenuTrigger asChild className="focus:outline-none">
+        <button
+          className="text-md flex h-12 w-full items-center border-b-2 border-neutral-200 px-3 font-semibold transition hover:bg-zinc-700/10 dark:border-neutral-800 dark:hover:bg-zinc-700/50"
+          type="button"
+        >
           {server.name}
-          <ChevronDown className="h-5 w-5 ml-auto" />
+          <ChevronDown className="ml-auto h-5 w-5" />
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56 text-xs font-medium text-black dark:text-neutral-400 space-y-0.5">
-        {isModerator && (
+      <DropdownMenuContent className="w-56 space-y-0.5 text-xs font-medium text-black dark:text-neutral-400">
+        {isModerator ? (
           <DropdownMenuItem
+            className="cursor-pointer px-3 py-2 text-sm text-indigo-600 dark:text-indigo-400"
             onClick={() => {
               onOpen('invite', { server })
             }}
-            className="text-indigo-600 dark:text-indigo-400 px-3 py-2 text-sm cursor-pointer"
           >
             Invite People
-            <UserPlus className="w-4 h-4 ml-auto" />
+            <UserPlus className="ml-auto h-4 w-4" />
           </DropdownMenuItem>
-        )}
-        {isAdmin && (
+        ) : null}
+        {isAdmin ? (
           <DropdownMenuItem
+            className="cursor-pointer px-3 py-2 text-sm"
             onClick={() => {
               onOpen('serverSettings', { server })
             }}
-            className="px-3 py-2 text-sm cursor-pointer"
           >
             Server Settings
-            <Settings className="w-4 h-4 ml-auto" />
+            <Settings className="ml-auto h-4 w-4" />
           </DropdownMenuItem>
-        )}
-        {isModerator && (
+        ) : null}
+        {isModerator ? (
           <DropdownMenuItem
+            className="cursor-pointer px-3 py-2 text-sm"
             onClick={() => {
               onOpen('members', { server })
             }}
-            className="px-3 py-2 text-sm cursor-pointer"
           >
             Manage Members
-            <Users className="w-4 h-4 ml-auto" />
+            <Users className="ml-auto h-4 w-4" />
           </DropdownMenuItem>
-        )}
-        {isModerator && (
-          <DropdownMenuItem className="px-3 py-2 text-sm cursor-pointer">
+        ) : null}
+        {isModerator ? (
+          <DropdownMenuItem
+            className="cursor-pointer px-3 py-2 text-sm"
+            onClick={() => {
+              onOpen('createChannel')
+            }}
+          >
             Create Channel
-            <PlusCircle className="w-4 h-4 ml-auto" />
+            <PlusCircle className="ml-auto h-4 w-4" />
           </DropdownMenuItem>
-        )}
-        {isModerator && <DropdownMenuSeparator />}
-        {isAdmin && (
-          <DropdownMenuItem className="text-rose-500 px-3 py-2 text-sm cursor-pointer">
+        ) : null}
+        {isModerator ? <DropdownMenuSeparator /> : null}
+        {isAdmin ? (
+          <DropdownMenuItem className="cursor-pointer px-3 py-2 text-sm text-rose-500">
             Delete Server
-            <Trash className="w-4 h-4 ml-auto" />
+            <Trash className="ml-auto h-4 w-4" />
           </DropdownMenuItem>
-        )}
+        ) : null}
         {!isAdmin && (
-          <DropdownMenuItem className="text-rose-500 px-3 py-2 text-sm cursor-pointer">
+          <DropdownMenuItem className="cursor-pointer px-3 py-2 text-sm text-rose-500">
             Leave Server
-            <LogOut className="w-4 h-4 ml-auto" />
+            <LogOut className="ml-auto h-4 w-4" />
           </DropdownMenuItem>
         )}
       </DropdownMenuContent>

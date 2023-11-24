@@ -6,6 +6,7 @@ import { CreateServerModal } from '@/components/modals/create-server-modal'
 import { InviteModal } from '@/components/modals/invite-modal'
 import { SettingsServerModal } from '@/components/modals/server-settings-modal'
 import { MembersModal } from '@/components/modals/members-modal'
+import { CreateChannelModal } from '@/components/modals/create-channel-modal'
 
 export function ModalProvider() {
   const [isMounted, setIsMounted] = useState(false)
@@ -24,6 +25,7 @@ export function ModalProvider() {
       <InviteModal />
       <SettingsServerModal />
       <MembersModal />
+      <CreateChannelModal />
     </>
   )
 }

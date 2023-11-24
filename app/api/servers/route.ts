@@ -4,7 +4,7 @@ import { MemberRole } from '@prisma/client'
 import { currentProfile } from '@/lib/current-profile'
 import { db } from '@/lib/db'
 
-export async function POST (req: Request) {
+export async function POST(req: Request) {
   try {
     const { name, imageUrl } = await req.json()
     const profile = await currentProfile()
@@ -20,21 +20,18 @@ export async function POST (req: Request) {
         imageUrl,
         inviteCode: crypto.randomUUID(),
         channels: {
-          create: [
-            { name: 'general', profileId: profile.id }
-          ]
+          create: [{ name: 'general', profileId: profile.id }],
         },
         members: {
-          create: [
-            { profileId: profile.id, role: MemberRole.ADMIN }
-          ]
-        }
-      }
+          create: [{ profileId: profile.id, role: MemberRole.ADMIN }],
+        },
+      },
     })
 
     return NextResponse.json(server)
   } catch (error) {
     console.error('[SERVERS_ERROR]', error)
+
     return new NextResponse('Internal Error', { status: 500 })
   }
 }

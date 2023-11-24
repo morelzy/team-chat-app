@@ -4,7 +4,7 @@ import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
-  TooltipTrigger
+  TooltipTrigger,
 } from '@/components/ui/tooltip'
 
 interface ActionTooltipProps {
@@ -18,14 +18,14 @@ export function ActionTooltip({
   children,
   label,
   align,
-  side
+  side,
 }: ActionTooltipProps) {
   return (
     <TooltipProvider>
       <Tooltip delayDuration={50}>
         <TooltipTrigger asChild>{children}</TooltipTrigger>
         <TooltipContent align={align} side={side}>
-          <p className="font-semibold text-sm capitalize">
+          <p className="text-sm font-semibold capitalize">
             {label.toLowerCase()}
           </p>
         </TooltipContent>

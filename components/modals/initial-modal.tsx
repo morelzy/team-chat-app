@@ -13,7 +13,7 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle
+  DialogTitle,
 } from '@/components/ui/dialog'
 import {
   Form,
@@ -21,7 +21,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
@@ -29,11 +29,11 @@ import { FileUpload } from '@/components/file-upload'
 
 const formSchema = z.object({
   name: z.string().min(2, {
-    message: 'Your server name must be at least 2 characters long.'
+    message: 'Your server name must be at least 2 characters long.',
   }),
   imageUrl: z.string().min(1, {
-    message: 'You must provide a valid image URL.'
-  })
+    message: 'You must provide a valid image URL.',
+  }),
 })
 
 export function InitialModal() {
@@ -48,8 +48,8 @@ export function InitialModal() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: '',
-      imageUrl: ''
-    }
+      imageUrl: '',
+    },
   })
 
   const isLoading = form.formState.isSubmitting
@@ -72,9 +72,9 @@ export function InitialModal() {
 
   return (
     <Dialog open>
-      <DialogContent className="bg-white text-black p-0 overflow-hidden">
-        <DialogHeader className="pt-8 px-6">
-          <DialogTitle className="text-2xl text-center font-bold">
+      <DialogContent className="overflow-hidden bg-white p-0 text-black">
+        <DialogHeader className="px-6 pt-8">
+          <DialogTitle className="text-center text-2xl font-bold">
             Customize your server
           </DialogTitle>
           <DialogDescription className="text-center text-zinc-500">
@@ -83,7 +83,7 @@ export function InitialModal() {
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <form className="space-y-8" onSubmit={form.handleSubmit(onSubmit)}>
             <div className="space-y-8 px-6">
               <div className="flex items-center justify-center text-center">
                 <FormField
@@ -108,13 +108,13 @@ export function InitialModal() {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-secondary/70">
+                    <FormLabel className="text-xs font-bold uppercase text-zinc-500 dark:text-secondary/70">
                       Server name
                     </FormLabel>
                     <FormControl>
                       <Input
+                        className="border-0 bg-zinc-300/50 text-black focus-visible:ring-0 focus-visible:ring-offset-0"
                         disabled={isLoading}
-                        className="bg-zinc-300/50 border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0"
                         placeholder="Enter a server name"
                         {...field}
                       />

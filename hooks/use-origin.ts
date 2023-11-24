@@ -7,7 +7,7 @@ export function useOrigin() {
     setMounted(true)
   }, [])
 
-  const origin = window?.location.origin ? window.location.origin : ''
+  const origin = window.location.origin ? window.location.origin : ''
 
   if (!mounted) {
     return ''

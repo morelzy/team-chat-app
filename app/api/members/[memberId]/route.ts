@@ -5,7 +5,7 @@ import { db } from '@/lib/db'
 
 export async function DELETE(
   req: Request,
-  { params }: { params: { memberId: string } }
+  { params }: { params: { memberId: string } },
 ) {
   try {
     const profile = await currentProfile()
@@ -28,40 +28,41 @@ export async function DELETE(
     const server = await db.server.update({
       where: {
         id: serverId,
-        profileId: profile.id
+        profileId: profile.id,
       },
       data: {
         members: {
           deleteMany: {
             id: params.memberId,
             profileId: {
-              not: profile.id
-            }
-          }
-        }
+              not: profile.id,
+            },
+          },
+        },
       },
       include: {
         members: {
           include: {
-            profile: true
+            profile: true,
           },
           orderBy: {
-            role: 'asc'
-          }
-        }
-      }
+            role: 'asc',
+          },
+        },
+      },
     })
 
     return NextResponse.json(server)
   } catch (error) {
     console.error('MEMBERS_ID_DELETE', error)
+
     return new NextResponse('Internal Error', { status: 500 })
   }
 }
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { memberId: string } }
+  { params }: { params: { memberId: string } },
 ) {
   try {
     const profile = await currentProfile()
@@ -85,7 +86,7 @@ export async function PATCH(
     const server = await db.server.update({
       where: {
         id: serverId,
-        profileId: profile.id
+        profileId: profile.id,
       },
       data: {
         members: {
@@ -93,30 +94,31 @@ export async function PATCH(
             where: {
               id: params.memberId,
               profileId: {
-                not: profile.id
-              }
+                not: profile.id,
+              },
             },
             data: {
-              role
-            }
-          }
-        }
+              role,
+            },
+          },
+        },
       },
       include: {
         members: {
           include: {
-            profile: true
+            profile: true,
           },
           orderBy: {
-            role: 'asc'
-          }
-        }
-      }
+            role: 'asc',
+          },
+        },
+      },
     })
 
     return NextResponse.json(server)
   } catch (error) {
     console.error('MEMBERS_ID_PATCH', error)
+
     return new NextResponse('Internal Error', { status: 500 })
   }
 }

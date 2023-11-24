@@ -3,6 +3,7 @@ import { ChannelType } from '@prisma/client'
 
 import { db } from '@/lib/db'
 import { currentProfile } from '@/lib/current-profile'
+
 import { ServerHeader } from './server-header'
 
 interface ServerSidebarProps {
@@ -18,49 +19,48 @@ export async function ServerSidebar({ serverId }: ServerSidebarProps) {
 
   const server = await db.server.findUnique({
     where: {
-      id: serverId
+      id: serverId,
     },
     include: {
       channels: {
         orderBy: {
-          createdAt: 'asc'
-        }
+          createdAt: 'asc',
+        },
       },
       members: {
         include: {
-          profile: true
+          profile: true,
         },
         orderBy: {
-          role: 'asc'
-        }
-      }
-    }
+          role: 'asc',
+        },
+      },
+    },
   })
 
   const textChannels = server?.channels.filter(
-    (channel) => channel.type === ChannelType.TEXT
+    (channel) => channel.type === ChannelType.TEXT,
   )
   const audioChannels = server?.channels.filter(
-    (channel) => channel.type === ChannelType.AUDIO
+    (channel) => channel.type === ChannelType.AUDIO,
   )
   const videoChannels = server?.channels.filter(
-    (channel) => channel.type === ChannelType.VIDEO
+    (channel) => channel.type === ChannelType.VIDEO,
   )
   const members = server?.members.filter(
-    (member) => member.profileId !== profile.id
+    (member) => member.profileId !== profile.id,
   )
 
   if (!server) {
     return redirect('/')
   }
 
-  const role = server.members.find(
-    (member) => member.profileId === profile.id
-  )?.role
+  const role = server.members.find((member) => member.profileId === profile.id)
+    ?.role
 
   return (
-    <div className="flex flex-col h-full text-primary w-full bg-[#F2F3F5] dark:bg-[#2B2D31]">
-      <ServerHeader server={server} role={role} />
+    <div className="flex h-full w-full flex-col bg-[#F2F3F5] text-primary dark:bg-[#2B2D31]">
+      <ServerHeader role={role} server={server} />
     </div>
   )
 }

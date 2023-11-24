@@ -21,22 +21,26 @@ export function NavigationItem({ id, imageUrl, name }: NavigationItemProps) {
   }
 
   return (
-    <ActionTooltip side="right" align="center" label={name}>
-      <button onClick={onClick} className="group relative flex items-center">
+    <ActionTooltip align="center" label={name} side="right">
+      <button
+        className="group relative flex items-center"
+        type="button"
+        onClick={onClick}
+      >
         <div
           className={cn(
-            'absolute left-0 bg-primary rounded-r-full transition-all w-1',
+            'absolute left-0 w-1 rounded-r-full bg-primary transition-all',
             params?.serverId !== id && 'group-hover:h-[20px]',
-            params?.serverId === id ? 'h-9' : 'h-2'
+            params?.serverId === id ? 'h-9' : 'h-2',
           )}
         />
         <div
           className={cn(
-            'relative group flex mx-3 h-12 w-12 rounded-3xl group-hover:rounded-2xl transition-all overflow-hidden',
-            params?.serverId === id && 'bg-primary/10 text-primary rounded-2xl'
+            'group relative mx-3 flex h-12 w-12 overflow-hidden rounded-3xl transition-all group-hover:rounded-2xl',
+            params?.serverId === id && 'rounded-2xl bg-primary/10 text-primary',
           )}
         >
-          <Image fill src={imageUrl} alt="Channel" />
+          <Image fill alt="Channel" src={imageUrl} />
         </div>
       </button>
     </ActionTooltip>

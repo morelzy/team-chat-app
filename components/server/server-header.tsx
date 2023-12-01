@@ -91,13 +91,23 @@ export function ServerHeader({ server, role }: ServerHeaderProps) {
         ) : null}
         {isModerator ? <DropdownMenuSeparator /> : null}
         {isAdmin ? (
-          <DropdownMenuItem className="cursor-pointer px-3 py-2 text-sm text-rose-500">
+          <DropdownMenuItem
+            className="cursor-pointer px-3 py-2 text-sm text-rose-500"
+            onClick={() => {
+              onOpen('deleteServer', { server })
+            }}
+          >
             Delete Server
             <Trash className="ml-auto h-4 w-4" />
           </DropdownMenuItem>
         ) : null}
         {!isAdmin && (
-          <DropdownMenuItem className="cursor-pointer px-3 py-2 text-sm text-rose-500">
+          <DropdownMenuItem
+            className="cursor-pointer px-3 py-2 text-sm text-rose-500"
+            onClick={() => {
+              onOpen('leaveServer', { server })
+            }}
+          >
             Leave Server
             <LogOut className="ml-auto h-4 w-4" />
           </DropdownMenuItem>

@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 'use client'
 
 import type { Member, Profile } from '@prisma/client'
@@ -115,7 +114,7 @@ export function ChatItem({
     form.reset({
       content: content,
     })
-  }, [content])
+  }, [content, form])
 
   const fileType = fileUrl?.split('.').pop()
 
@@ -139,12 +138,13 @@ export function ChatItem({
         <div className="flex w-full flex-col">
           <div className="flex items-center gap-x-2">
             <div className="flex items-center">
-              <p
+              <button
                 className="cursor-pointer text-sm font-semibold hover:underline"
+                type="button"
                 onClick={onMemberClick}
               >
                 {member.profile.name}
-              </p>
+              </button>
               <ActionTooltip label={member.role}>
                 {roleIconMap[member.role]}
               </ActionTooltip>

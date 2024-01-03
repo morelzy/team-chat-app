@@ -71,10 +71,10 @@ export function CreateServerModal() {
 
   return (
     <Dialog open={isModalOpen} onOpenChange={handleModalClose}>
-      <DialogContent className="overflow-hidden bg-white p-0 text-black">
+      <DialogContent className="overflow-hidden p-0 bg-zinc-900">
         <DialogHeader className="px-6 pt-8">
           <DialogTitle className="text-center text-2xl font-bold">
-            Customize your server
+            Customiza tu Servidor
           </DialogTitle>
           <DialogDescription className="text-center text-zinc-500">
             Give your server a personality with a name and image. You can always
@@ -107,12 +107,13 @@ export function CreateServerModal() {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-xs font-bold uppercase text-zinc-500 dark:text-secondary/70">
-                      Server name
+                    <FormLabel className="text-xs font-bold uppercase">
+                      nombre del servidor
                     </FormLabel>
                     <FormControl>
                       <Input
-                        className="border-0 bg-zinc-300/50 text-black focus-visible:ring-0 focus-visible:ring-offset-0"
+                      autoComplete="off"
+                        className="border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
                         disabled={isLoading}
                         placeholder="Enter a server name"
                         {...field}
@@ -123,7 +124,7 @@ export function CreateServerModal() {
                 )}
               />
             </div>
-            <DialogFooter className="bg-gray-100 px-6 py-4">
+            <DialogFooter className="px-6 py-4">
               <Button disabled={isLoading} variant="primary">
                 Create
               </Button>

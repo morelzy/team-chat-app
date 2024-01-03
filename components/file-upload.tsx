@@ -35,7 +35,7 @@ export function FileUpload({ endpoint, onChange, value }: FileUploadProps) {
 
   if (value && fileType === 'pdf') {
     return (
-      <div className="relative mt-2 flex items-center rounded-md bg-background/10 p-2">
+      <div className="relative mt-2 flex items-center rounded-md p-2">
         <FileIcon className="h-10 w-10 fill-indigo-200 stroke-indigo-400" />
         <a
           className="ml-2 text-sm text-indigo-500 hover:underline dark:text-indigo-400"
@@ -60,6 +60,7 @@ export function FileUpload({ endpoint, onChange, value }: FileUploadProps) {
 
   return (
     <UploadDropzone
+      className='bg-zinc-800'
       endpoint={endpoint}
       onClientUploadComplete={(res) => {
         onChange(res?.[0].url)

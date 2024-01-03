@@ -21,7 +21,7 @@ export async function POST(req: Request) {
     }
 
     if (name === 'general') {
-      return new NextResponse('Name cannot be "general"', { status: 400 })
+      return new NextResponse("Name cannot be 'general'", { status: 400 })
     }
 
     const server = await db.server.update({
@@ -49,7 +49,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json(server)
   } catch (error) {
-    console.error('CHANNELS_POST', error)
+    console.log('CHANNELS_POST', error)
 
     return new NextResponse('Internal Error', { status: 500 })
   }

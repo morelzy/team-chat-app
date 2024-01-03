@@ -8,7 +8,7 @@ const handleAuth = () => {
 
   if (!userId) throw new Error('Unauthorized')
 
-  return { userId }
+  return { userId: userId }
 }
 
 export const ourFileRouter = {

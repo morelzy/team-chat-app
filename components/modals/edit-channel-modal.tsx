@@ -97,7 +97,7 @@ export function EditChannelModal() {
 
   return (
     <Dialog open={isModalOpen} onOpenChange={handleModalClose}>
-      <DialogContent className="overflow-hidden bg-white p-0 text-black">
+      <DialogContent className="overflow-hidden bg-zinc-900 p-0">
         <DialogHeader className="px-6 pt-8">
           <DialogTitle className="text-center text-2xl font-bold">
             Edit Channel
@@ -111,12 +111,13 @@ export function EditChannelModal() {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-xs font-bold uppercase text-zinc-500 dark:text-secondary/70">
+                    <FormLabel className="text-xs font-bold uppercase">
                       Channel name
                     </FormLabel>
                     <FormControl>
                       <Input
-                        className="border-0 bg-zinc-300/50 text-black focus-visible:ring-0 focus-visible:ring-offset-0"
+                        autoComplete="off"
+                        className="border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
                         disabled={isLoading}
                         placeholder="Enter a channel name"
                         {...field}
@@ -131,14 +132,14 @@ export function EditChannelModal() {
                 name="type"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Channel Type</FormLabel>
+                    <FormLabel className='uppercase text-xs'>Channel Type</FormLabel>
                     <Select
                       defaultValue={field.value}
                       disabled={isLoading}
                       onValueChange={field.onChange}
                     >
                       <FormControl>
-                        <SelectTrigger className="border-0 bg-zinc-300/50 capitalize text-black outline-none ring-offset-0 focus:ring-0 focus:ring-offset-0">
+                        <SelectTrigger className="border-0 capitalize  outline-none ring-offset-0 focus:ring-0 focus:ring-offset-0">
                           <SelectValue placeholder="Select a channel type" />
                         </SelectTrigger>
                       </FormControl>
@@ -159,7 +160,7 @@ export function EditChannelModal() {
                 )}
               />
             </div>
-            <DialogFooter className="bg-gray-100 px-6 py-4">
+            <DialogFooter className="px-6 py-4">
               <Button disabled={isLoading} variant="primary">
                 Save
               </Button>

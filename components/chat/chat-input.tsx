@@ -5,13 +5,14 @@ import * as z from 'zod'
 import axios from 'axios'
 import qs from 'query-string'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Plus } from 'lucide-react'
+import { Plus, SendHorizonal } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { useModalStore } from '@/hooks/use-modal-store'
 import { EmojiPicker } from '@/components/emoji-picker'
+import { Button } from '../ui/button'
 
 interface ChatInputProps {
   apiUrl: string
@@ -55,12 +56,12 @@ export function ChatInput({ apiUrl, name, query, type }: ChatInputProps) {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className='flex items-center'>
         <FormField
           control={form.control}
           name="content"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className='flex-1'>
               <FormControl>
                 <div className="relative p-4 pb-6">
                   <button
@@ -73,9 +74,10 @@ export function ChatInput({ apiUrl, name, query, type }: ChatInputProps) {
                     <Plus className="text-white dark:text-[#313338]" />
                   </button>
                   <Input
-                    className="border-0 border-none bg-zinc-200/90 px-14 py-6 text-zinc-600 focus-visible:ring-0 focus-visible:ring-offset-0 dark:bg-zinc-700/75 dark:text-zinc-200"
+                    autoComplete="off"
+                    className="border-0 border-none px-14 py-6 text-zinc-600 focus-visible:ring-0 focus-visible:ring-offset-0 bg-zinc-900"
                     disabled={isLoading}
-                    placeholder={`Message ${
+                    placeholder={`Enviar mensaje a ${
                       type === 'conversation' ? name : '#' + name
                     }`}
                     {...field}
@@ -92,6 +94,9 @@ export function ChatInput({ apiUrl, name, query, type }: ChatInputProps) {
             </FormItem>
           )}
         />
+        <Button type="submit" variant="primary" className="p-3 mb-2 mr-2">
+          <SendHorizonal className="h-5 w-5 " />
+        </Button>
       </form>
     </Form>
   )

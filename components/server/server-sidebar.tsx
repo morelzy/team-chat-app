@@ -80,7 +80,7 @@ export async function ServerSidebar({ serverId }: ServerSidebarProps) {
     ?.role
 
   return (
-    <div className="flex h-full w-full flex-col bg-[#F2F3F5] text-primary dark:bg-[#2B2D31]">
+    <div className="flex h-full w-full flex-col text-primary dark:bg-zinc-900 rounded-tr-3xl rounded-br-3xl">
       <ServerHeader role={role} server={server} />
       <ScrollArea className="flex-1 px-3">
         <div className="mt-2">
@@ -125,7 +125,7 @@ export async function ServerSidebar({ serverId }: ServerSidebarProps) {
             ]}
           />
         </div>
-        <Separator className="my-2 rounded-md bg-zinc-200 dark:bg-zinc-700" />
+        <Separator className="my-2 rounded-md bg-zinc-700" />
         {!!textChannels?.length && (
           <div className="mb-2">
             <ServerSection

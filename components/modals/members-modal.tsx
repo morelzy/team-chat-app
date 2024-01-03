@@ -58,7 +58,7 @@ export function MembersModal() {
       setLoadingId(memberId)
 
       const url = qs.stringifyUrl({
-        url: `api/members/${memberId}`,
+        url: `/api/members/${memberId}`,
         query: {
           serverId: server?.id,
         },
@@ -99,7 +99,7 @@ export function MembersModal() {
 
   return (
     <Dialog open={isModalOpen} onOpenChange={onClose}>
-      <DialogContent className="overflow-hidden bg-white text-black">
+      <DialogContent className="overflow-hidden bg-zinc-900">
         <DialogHeader className="px-6 pt-8">
           <DialogTitle className="text-center text-2xl font-bold">
             Manage Members

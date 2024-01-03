@@ -28,18 +28,11 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html suppressHydrationWarning lang="en">
-        <body className={cn(font.className, 'bg-[#fafafa] dark:bg-[#313338]')}>
-          <ThemeProvider
-            enableSystem
-            attribute="class"
-            defaultTheme="system"
-            storageKey="discord-theme"
-          >
-            <SocketProvider>
-              <ModalProvider />
-              <QueryProvider>{children}</QueryProvider>
-            </SocketProvider>
-          </ThemeProvider>
+        <body className={cn(font.className, 'dark')}>
+          <SocketProvider>
+            <ModalProvider />
+            <QueryProvider>{children}</QueryProvider>
+          </SocketProvider>
         </body>
       </html>
     </ClerkProvider>

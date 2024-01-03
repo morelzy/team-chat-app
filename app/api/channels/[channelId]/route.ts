@@ -52,7 +52,7 @@ export async function DELETE(
 
     return NextResponse.json(server)
   } catch (error) {
-    console.error('[CHANNEL_ID_DELETE]', error)
+    console.log('[CHANNEL_ID_DELETE]', error)
 
     return new NextResponse('Internal Error', { status: 500 })
   }
@@ -82,9 +82,7 @@ export async function PATCH(
     }
 
     if (name === 'general') {
-      return new NextResponse('Name cannot be "general"', {
-        status: 400,
-      })
+      return new NextResponse("Name cannot be 'general'", { status: 400 })
     }
 
     const server = await db.server.update({
@@ -119,7 +117,7 @@ export async function PATCH(
 
     return NextResponse.json(server)
   } catch (error) {
-    console.error('[CHANNEL_ID_PATCH]', error)
+    console.log('[CHANNEL_ID_PATCH]', error)
 
     return new NextResponse('Internal Error', { status: 500 })
   }

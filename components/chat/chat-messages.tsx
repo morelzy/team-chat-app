@@ -3,7 +3,7 @@
 import type { Member, Message, Profile } from '@prisma/client'
 
 import { Fragment, useRef, type ElementRef } from 'react'
-import { Loader, Loader2, ServerCrash } from 'lucide-react'
+import { Loader2, ServerCrash } from 'lucide-react'
 import { format } from 'date-fns'
 
 import { ChatWelcome } from '@/components/chat/chat-welcome'
@@ -114,7 +114,7 @@ export function ChatMessages({
                 deleted={message.deleted}
                 fileUrl={message.fileUrl}
                 id={message.id}
-                isUpdate={message.updatedAt !== message.createdAt}
+                isUpdated={message.updatedAt !== message.createdAt}
                 member={message.member}
                 socketQuery={socketQuery}
                 socketUrl={socketUrl}

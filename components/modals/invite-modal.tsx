@@ -54,19 +54,19 @@ export function InviteModal() {
 
   return (
     <Dialog open={isModalOpen} onOpenChange={onClose}>
-      <DialogContent className="overflow-hidden bg-white p-0 text-black">
+      <DialogContent className="overflow-hidden bg-zinc-900 p-0">
         <DialogHeader className="px-6 pt-8">
           <DialogTitle className="text-center text-2xl font-bold">
             Invite Friends
           </DialogTitle>
         </DialogHeader>
         <div className="p-6">
-          <Label className="text-xs font-bold uppercase text-zinc-500 dark:text-secondary/70">
+          <Label className="text-xs font-bold uppercase">
             Server invite link
           </Label>
           <div className="mt-2 flex items-center gap-x-2">
             <Input
-              className="border-0 bg-zinc-300/50 text-black focus-visible:ring-0 focus-visible:ring-offset-0"
+              className="border-0 bg-zinc-600/50 focus-visible:ring-0 focus-visible:ring-offset-0"
               disabled={isLoading}
               value={inviteUrl}
             />
@@ -79,7 +79,7 @@ export function InviteModal() {
             </Button>
           </div>
           <Button
-            className="mt-4 text-xs text-zinc-500"
+            className="mt-4 text-xs text-zinc-400"
             disabled={isLoading}
             size="sm"
             variant="link"

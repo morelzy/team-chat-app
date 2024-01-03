@@ -30,7 +30,7 @@ export async function PATCH(
 
     return NextResponse.json(server)
   } catch (error) {
-    console.error('[INVITE_CODE]', error)
+    console.log('[SERVER_ID]', error)
 
     return new NextResponse('Internal Error', { status: 500 })
   }

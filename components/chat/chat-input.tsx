@@ -75,7 +75,7 @@ export function ChatInput({ apiUrl, name, query, type }: ChatInputProps) {
                   </button>
                   <Input
                     autoComplete="off"
-                    className="border-0 border-none px-14 py-6 text-zinc-600 focus-visible:ring-0 focus-visible:ring-offset-0 bg-zinc-900"
+                    className="border-0 border-none px-14 py-6 focus-visible:ring-0 focus-visible:ring-offset-0 bg-zinc-900"
                     disabled={isLoading}
                     placeholder={`Enviar mensaje a ${
                       type === 'conversation' ? name : '#' + name
